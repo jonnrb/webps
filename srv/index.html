@@ -1,0 +1,47 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/static/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy">
+<link rel="stylesheet" href="/static/page.min.css" integrity="sha384-jrOK0dYqmORwfRsy6r534aYMluTZO171Jc/t2z0kmvq2YRQfkNV/WunfyiHW2Wft">
+
+<title>webps</title>
+
+<div class="container">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <h1>webps</h1>
+</nav>
+
+{{ range .Sections }}
+<div class="card sec">
+  <div class="card-header" role="tab">
+    <h5 class="mb-0">{{ .Name }}</h5>
+  </div>
+
+  <div role="tabpanel">
+    <table class="table card-body">
+      <colgroup>
+        <col span="1" class="s-col">
+        <col span="1" class="c-col">
+        <col span="1" class="i-col">
+      </colgroup>
+
+      <thead>
+        <tr>
+          <th scope="col">status</th>
+          <th scope="col">container</th>
+          <th scope="col">image</th>
+        </tr>
+      </thead>
+      <tbody>
+{{ range .Containers }}
+        <tr>
+          <td>{{ .Status }}</td>
+          <td>{{ .Name }}</td>
+          <td>{{ .Image }}</td>
+        </tr>
+{{ end }}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{ end }}
