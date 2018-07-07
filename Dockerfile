@@ -22,8 +22,4 @@ from gcr.io/distroless/base
 # Copy over binaries from the build.
 copy --from=build /go/bin/* /bin/
 
-# Copy template and static.
-workdir /srv
-copy srv .
-
 entrypoint ["/bin/webps-entrypoint"]

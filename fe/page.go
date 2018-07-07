@@ -6,10 +6,12 @@ import (
 	"sort"
 	"strings"
 
+	"go.jonnrb.io/webps/fe/assets"
 	"go.jonnrb.io/webps/pb"
 )
 
-var tmpl = template.Must(template.New("").ParseFiles("index.html")).Lookup("index.html")
+var tmpl = template.Must(
+	template.New("").Parse(string(assets.MustAsset("tmpl/index.html"))))
 
 type Page struct {
 	Sections []*Section

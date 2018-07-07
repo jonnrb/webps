@@ -10,15 +10,21 @@ import (
 	"strings"
 	"time"
 
+	"github.com/elazarl/go-bindata-assetfs"
+	"go.jonnrb.io/webps/fe/assets"
 	"go.jonnrb.io/webps/pb"
 )
 
-func New(be []webpspb.WebPsBackendClient) http.Handler {
-	static := http.StripPrefix("/static", http.FileServer(http.Dir("static")))
+var staticAssets = http.FileServer(&assetfs.AssetFS{
+	Asset:     assets.Asset,
+	AssetDir:  assets.AssetDir,
+	AssetInfo: assets.AssetInfo,
+})
 
+func New(be []webpspb.WebPsBackendClient) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasPrefix(r.URL.Path, "/static") {
-			static.ServeHTTP(w, r)
+			staticAssets.ServeHTTP(w, r)
 			return
 		}
 
