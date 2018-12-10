@@ -7,7 +7,8 @@ platform:
   arch: amd64
 
 steps:
-- image: plugins/docker
+- name: docker
+  image: plugins/docker
   settings:
     password:
       from_secret: quay_password
