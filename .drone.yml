@@ -1,11 +1,19 @@
-pipeline:
-  quay:
-    image: plugins/docker
-    repo: quay.io/jonnrb/webps
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- image: plugins/docker
+  settings:
+    password:
+      from_secret: quay_password
     registry: quay.io
-    storage_driver: overlay2
-    secrets:
-      - source: quay_username
-        target: docker_username
-      - source: quay_password
-        target: docker_password
+    repo: quay.io/jonnrb/webps
+    username:
+      from_secret: quay_username
+
+...
